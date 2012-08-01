@@ -22,6 +22,10 @@ sub is_valid
 sub bio_file
 {
  my($self, $input_string) = @_; 
+ if ($self->line_check($input_string)==1)
+ {
+     return 0;
+ }
  my $seq;
  my $header;
  my %headers;
@@ -55,6 +59,20 @@ sub bio_file
    {return 0;}
  }
      return 1;
+}
+
+sub line_check
+{
+  my($self, $input_string) = @_;
+  open(FILE,"$input_string");
+  while(<FILE>)
+  {
+   if($_=~/^$/)
+   {
+    return 1;
+   }
+  }
+  return 0;
 }
 
 sub header_check

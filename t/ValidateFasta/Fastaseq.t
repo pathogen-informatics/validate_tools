@@ -14,6 +14,8 @@ BEGIN {
     throws_ok{ValidateFasta::FastaFile->new(fastafile=>"t/data/noseq.fa")} qr/Validation failed/, 'no sequence';
     throws_ok{ValidateFasta::FastaFile->new(fastafile=>"t/data/emptyhead.fa")} qr/Validation failed/, 'no header';
     throws_ok{ValidateFasta::FastaFile->new(fastafile=>"t/data/protein.fa")} qr/Validation failed/, 'characters other than acgtn - not DNA';
+    throws_ok{ValidateFasta::FastaFile->new(fastafile=>"t/data/gap1.fa")} qr/Validation failed/, 'blank line in sequence';
+    throws_ok{ValidateFasta::FastaFile->new(fastafile=>"t/data/gap2.fa")} qr/Validation failed/, 'blank line in sequence';
     throws_ok{ValidateFasta::FastaFile->new(fastafile=>"t/data/corr.gff")} qr/Validation failed/, 'not fasta file';
 
 done_testing();
